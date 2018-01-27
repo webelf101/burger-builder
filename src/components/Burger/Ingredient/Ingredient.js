@@ -7,7 +7,7 @@ class Ingredient extends Component {
   render() {
     let ingredient = null;
 
-    switch (this.prop.type) {
+    switch (this.props.type) {
       case ('bread-top'):
         ingredient = (
           <div className={classes.BreadTop}>
@@ -34,6 +34,8 @@ class Ingredient extends Component {
       default:
         ingredient = null;
     }
+
+    return ingredient;
   }
 };
 
