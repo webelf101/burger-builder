@@ -3,6 +3,7 @@ import React from 'react';
 import Button from '../../UI/Button/Button';
 
 const orderSummary = (props) => {
+
   const ingredientSummary = Object.keys(props.ingredients)
     .map(igKey => {
       return (
@@ -10,7 +11,8 @@ const orderSummary = (props) => {
           <span style={{textTransform: 'capitalize'}}>{igKey}</span>: {props.ingredients[igKey]}
         </li>
       )
-    })
+    });
+
   return (
     <React.Fragment>
       <h3>Your Complete Burger Order:</h3>
@@ -23,7 +25,7 @@ const orderSummary = (props) => {
         <Button btnType="Success" clicked={props.purchaseContinue}>Submit Order</Button>
       </div>
     </React.Fragment>
-  )
-};
+  );
+}
 
 export default orderSummary;
