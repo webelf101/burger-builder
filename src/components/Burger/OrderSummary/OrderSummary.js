@@ -18,9 +18,10 @@ const orderSummary = (props) => {
         {ingredientSummary}
       </ul>
       <p><strong>Total Price: ${props.price.toFixed(2)}</strong></p>
-      <p>Looks good?</p>
-      <Button btnType="Danger" clicked={props.purchaseCancled}>Go Back</Button>
-      <Button btnType="Success" clicked={props.purchaseContinue}>Submit Order</Button>
+      <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <Button btnType="Danger" clicked={props.purchaseCancled}>Go Back</Button>
+        <Button btnType="Success" clicked={props.purchaseContinue}>Submit Order</Button>
+      </div>
     </React.Fragment>
   )
 };
