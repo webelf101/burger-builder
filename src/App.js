@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Layout from './containers/Layout/Layout';
@@ -14,10 +14,18 @@ class App extends Component {
   componentWillMount = () => {
     this.props.onTryAutoSignUp();
   }
-  
+
   render() {
-    return (
-      <div>
+    let routes = (
+      <Layout>
+        <Route path="/" exact component={BurgerBuilder} />
+        <Route path="/auth" component={Auth} />
+        <Redirect to="/" />
+      </Layout>
+    );
+
+    if (this.props.isAuthenticated) {
+      routes = (
         <Layout>
           <Route path="/" exact component={BurgerBuilder} />
           <Route path="/checkout" component={Checkout} />
@@ -25,15 +33,25 @@ class App extends Component {
           <Route path="/auth" component={Auth} />
           <Route path="/logout" component={Logout} />
         </Layout>
+      )
+    }
+    return (
+      <div>
+        {routes}
       </div>
     );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  };
+}
 const mapDispatchToProps = dispatch => {
   return {
     onTryAutoSignUp: () => dispatch(actions.authCheckState())
   };
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
