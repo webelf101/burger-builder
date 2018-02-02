@@ -26,7 +26,7 @@ const purchaseOrderSuccess = (state, action) => {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.PURCAHSE_INIT: return updateObject(state, { purchased: false });
-    case actionTypes.PURCAHSE_BURGER_START: return updateObject(state, { purchased: true });
+    case actionTypes.PURCAHSE_BURGER_START: return updateObject(state, { loading: false });
     case actionTypes.PURCHASE_BURGER_SUCCESS: return purchaseBurgerSuccess(state, action);
     case actionTypes.PURCHASE_BURGER_FAIL: return updateObject(state, { loading: false });
     case actionTypes.FETCH_ORDERS_START: return updateObject(state, { loading: true });
